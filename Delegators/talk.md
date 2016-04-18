@@ -2,12 +2,24 @@
 
 PEP 380 --Syntax for Delegating to a Subgenerator
 
-
 # The purpose of Generators in Python
 
 Return returns the entire output at once. Yield, which is typically used by generators, yields only one iteration at a time
 
+# Code Example of yield
+
+''''python 
+def get_primes(number):
+	while True:
+		if is_prime(number):
+			number = yield number
+		number += 1
+''''
+
+
+
 # Weakness with Yield and Generators
+
 A drawback to yield is that when yield is used in a function, it can 
 only yield back to one caller
 
