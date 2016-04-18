@@ -72,12 +72,18 @@ RESULT = _r
 
 With the new syntax, we can now move around the code with yield in it to a greater degree, making it easier for us to reuse it
 
+#Optimization
 
-# Eighth
+Delegating to subgenerators also helps to optimize in recursive calls
 
-# Ninth
+# Similarities to Class
 
-# Tenth
+Small-Step Semantics
+
+# Counter-points
+
+The proposal, PEP 380, is accepted but disagreed with due to its unusual way of using yield to get outputs
+
 
 # Eleventh
 
