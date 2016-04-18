@@ -4,7 +4,7 @@ PEP 380 --Syntax for Delegating to a Subgenerator
 
 # The purpose of Generators in Python
 
-Return returns the entire output at once. Yield, which is typically used by generators, yields only one iteration at a time
+"Return" returns the entire output at once. "Yield", which is typically used by generators, yields only one iteration at a time
 
 # Code Example of yield
 
@@ -29,12 +29,15 @@ yield from expr
 ''''
 
 
-
 # Proposal (cont.)
 
 ''''python
 RESULT = yield from EXPR 
 ''''
+
+#Process
+	
+The yield runs until EXPR is depleted of iterations
 
 # Comparisons
 
@@ -80,6 +83,37 @@ else:
 RESULT = _r
 ''''
 
+#Generator Syntax
+
+''''python
+return value 
+''''
+
+Is effectively the same as
+
+''''python
+raise StopInteration(value)
+''''
+
+#Further Description of Proposal
+
+No new keywords or symbols are actually added 
+
+#Further Description of Proposal (cont.)
+
+At one point, 
+
+''''python
+yield *
+''''
+
+was used instead of 
+
+''''python
+yield from
+''''
+
+
 # Syntax
 
 With the new syntax, we can now move around the code with yield in it to a greater degree, making it easier for us to reuse it
@@ -116,14 +150,7 @@ The proposal, PEP 380, is accepted but disagreed with due to its unusual way of 
 
  Goes against idea of suspendable functions being like other functions
 
-# 16
 
-# 17
+# Conclusion
 
-# 18
-
-# 19
-
-# 20
-
-
+Ultimately, delegating to subgenerators is a largely small but useful implementation of new syntax
