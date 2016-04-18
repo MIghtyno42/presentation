@@ -72,9 +72,18 @@ RESULT = _r
 
 With the new syntax, we can now move around the code with yield in it to a greater degree, making it easier for us to reuse it
 
+# Refactoring
+
+Main purpose to move easily between functions and share data
+
+
 #Optimization
 
 Delegating to subgenerators also helps to optimize in recursive calls
+
+# Compartmentalization
+
+New syntax allows code to be split up, similar to threads
 
 # Similarities to Class
 
@@ -85,15 +94,15 @@ Small-Step Semantics
 The proposal, PEP 380, is accepted but disagreed with due to its unusual way of using yield to get outputs
 
 
-# Eleventh
+# Rejected Automation
 
-# 12
 
-# 13
+ Use of automated next() calls not within scope of project
 
-# 14
+ 
+# Rejected alternate return from sub-generator
 
-# 15
+ Goes against idea of suspendable functions being like other functions
 
 # 16
 
