@@ -1,3 +1,13 @@
+#Title Slide
+
+CSCI #3155 Presentation - Python
+
+Michael Min
+
+Andrew Orr
+
+Devon Connor
+
 # Introduction
 
 PEP 380 --Syntax for Delegating to a Subgenerator
@@ -8,13 +18,14 @@ PEP 380 --Syntax for Delegating to a Subgenerator
 
 # Code Example of yield
 
-''''python 
+````
 def get_primes(number):
 	while True:
 		if is_prime(number):
 			number = yield number
 		number += 1
-''''
+````
+
 
 
 
@@ -24,16 +35,17 @@ A drawback to yield is that when yield is used in a function, it can
 only yield back to one caller
 
 # Proposal
-''''python
+
 yield from expr
-''''
+
 
 
 # Proposal (cont.)
 
-''''python
+````
 RESULT = yield from EXPR 
-''''
+
+````
 
 #Process
 	
@@ -41,7 +53,8 @@ The yield runs until EXPR is depleted of iterations
 
 # Comparisons
 
-''''python
+-V fontsize=12pt
+````
 _i = iter(EXPR) 
 try:
     _y = next(_i)
@@ -81,19 +94,8 @@ else:
                 _r = _e.value
                 break
 RESULT = _r
-''''
+````
 
-#Generator Syntax
-
-''''python
-return value 
-''''
-
-Is effectively the same as
-
-''''python
-raise StopInteration(value)
-''''
 
 #Further Description of Proposal
 
@@ -103,15 +105,16 @@ No new keywords or symbols are actually added
 
 At one point, 
 
-''''python
-yield *
-''''
+````
+	yield *
+````
+
 
 was used instead of 
 
-''''python
-yield from
-''''
+````
+	yield from
+````
 
 
 # Syntax
