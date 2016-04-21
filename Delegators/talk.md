@@ -53,7 +53,7 @@ The yield runs until EXPR is depleted of iterations
 
 # Comparisons
 
--V fontsize=12pt
+
 ````
 _i = iter(EXPR) 
 try:
