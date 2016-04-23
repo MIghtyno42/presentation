@@ -2,31 +2,43 @@
 
 CSCI #3155 Presentation - Python
 
-Michael Min
+* Michael Min
 
-Andrew Orr
+* Andrew Orr
 
-Devon Connor
+* Devon Connor
 
 # Introduction
 
-PEP 380 --Syntax for Delegating to a Subgenerator
+* Our proposal was PEP 380 --Syntax for Delegating to a Subgenerator
+
+
+* PEP 380 simply changes the use of the yield keyword in Python
 
 # The purpose of Generators in Python
 
-"Return" returns the entire output at once. "Yield", which is typically used by generators, yields only one iteration at a time
+* ````python 
+Return
+```` 
+	* This is the keyword that returns the entire output at once. 
+* ````python
+Yield
+````
+	* This is the keyword typically used by generators, which yields only one iteration at a time
 
 # Code Example of yield
 
-````
+````python
 def get_primes(number):
 	while True:
 		if is_prime(number):
 			number = yield number
 		number += 1
+
+get_primes(2)
 ````
 
-
+* This function returns[2,3,5,7,...] one number at a time
 
 
 # Weakness with Yield and Generators
@@ -36,25 +48,32 @@ only yield back to one caller
 
 # Proposal
 
-yield from expr
+* The entire premise of PEP 380 is the following grammar: 
 
+````python
+yield from expr
+````
 
 
 # Proposal (cont.)
 
-````
+* When used more formally, the syntax is: 
+````python
 RESULT = yield from EXPR 
-
 ````
 
 #Process
 	
-The yield runs until EXPR is depleted of iterations
+* The yield runs until EXPR is depleted of iterations, as usual
+* The main change with PEP 380 is that it allows for yield to be used out of the function
+````python
+RESULT = yield from EXPR 
+````
 
 # Comparisons
 
 
-````
+````python
 _i = iter(EXPR) 
 try:
     _y = next(_i)
@@ -99,23 +118,31 @@ RESULT = _r
 
 #Further Description of Proposal
 
-No new keywords or symbols are actually added 
+* Other than the change with yield being added, no new keywords or symbols are actually added 
 
 #Further Description of Proposal (cont.)
 
 At one point, 
 
-````
+````python
 	yield *
 ````
 
 
-was used instead of 
+was used instead of:
 
-````
+````python
 	yield from
 ````
 
+but it was ruled that it looked too similar to yield in:
+
+````python
+def count(number):
+	for x in range(0,3):
+		number = yield number
+		number += 1
+````
 
 # Syntax
 
@@ -154,6 +181,7 @@ The proposal, PEP 380, is accepted but disagreed with due to its unusual way of 
  Goes against idea of suspendable functions being like other functions
 
 
-# Conclusion
+# Resources
 
-Ultimately, delegating to subgenerators is a largely small but useful implementation of new syntax
+* http://www.cosc.canterbury.ac.nz/greg.ewing/python/yield-from/
+* https://www.python.org/dev/peps/pep-0380/
