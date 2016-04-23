@@ -20,11 +20,11 @@ CSCI #3155 Presentation - Python
 * ````python 
 Return
 ```` 
-	* This is the keyword that returns the entire output at once. 
+	* The keyword that returns the entire output at once. 
 * ````python
 Yield
 ````
-	* This is the keyword typically used by generators, which yields only one iteration at a time
+	* The keyword typically used by generators, which yields only one iteration at a time
 
 # Code Example of yield
 
@@ -38,20 +38,29 @@ def get_primes(number):
 get_primes(2)
 ````
 
-* This function returns[2,3,5,7,...] one number at a time
+* This function is turned into a generator that will constantly return numbers in its endless loop, one at a time
 
 
-# Weakness with Yield and Generators
+# Finite Example of Generators
 
-A drawback to yield is that when yield is used in a function, it can 
-only yield back to one caller
+````python
+def get_primes(number):
+	for x in range(1,3):
+		yield number + 2
+
+
+print sum(get_primes(3))
+````
+* In a more explicit example, this function returns 10
 
 # Proposal
 
+* The drawback to this incarnation of yield is that when yield is used in a function, it can 
+only yield back to one caller
 * The entire premise of PEP 380 is the following grammar: 
 
 ````python
-yield from expr
+			yield from expr
 ````
 
 
