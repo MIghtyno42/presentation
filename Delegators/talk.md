@@ -194,13 +194,21 @@ def count(number):
 		number += 1
 ````
 
-# Syntax
+# Preview of Pros 
 
-With the new syntax, we can now move around the code with yield in it to a greater degree, making it easier for us to reuse it
+This new implementation helps to add:
+
+* Functionality to generators
+
+* Readability 
+
+* Reusability 
+
+* Optimization
 
 # Refactoring
 
-Main purpose to move easily between functions and share data
+* Since we can yield values to different locations now, it's easier to connect generators or functions this way
 
 # Ease of Use
 
