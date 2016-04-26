@@ -1,6 +1,6 @@
 #Title Slide
 
-CSCI #3155 Presentation - Python
+CSCI 3155 Presentation - Python
 
 * Michael Min
 
@@ -13,20 +13,67 @@ CSCI #3155 Presentation - Python
 * Our proposal was PEP 380 --Syntax for Delegating to a Subgenerator
 
 
-* PEP 380 simply changes the use of the yield keyword in Python
+* PEP 380 simply suggests making generators in Python more usable by giving another use to the following keyword: 
 
-# The purpose of Generators in Python
+
+````python 
+					yield
+```` 
+# What is a Generator?
+
+* In Python, generators are made to act like iterators, which formally look like this in Python:
+
+````python 
+class firstn(object):
+    def __init__(self, n):
+        self.n = n
+        self.num, self.nums = 0, []
+
+    def __iter__(self):
+        return self
+
+    # Python 3 compatibility
+    def __next__(self):
+        return self.next()
+
+    def next(self):
+        if self.num < self.n:
+            cur, self.num = self.num, self.num+1
+            return cur
+        else:
+            raise StopIteration()
+````
+
+* And return one value per iteration.
+
+* keyword is def__next__(self)
+
+# What is a Generator? (cont.)
+
+* Generators, on the other hand, are simpler and more readable:
+
+````python 
+def firstn(n):
+    num = 0
+    while num < n:
+        yield num
+        num += 1
+
+sum_of_first_n = sum(firstn(1000000))
+```` 
+
+# The Purpose of Generators in Python
 
 * ````python 
 Return
 ```` 
-	* The keyword that returns the entire output at once. 
+	* The keyword that returns the entire output at once. Used by iterators
 * ````python
 Yield
 ````
-	* The keyword typically used by generators, which yields only one iteration at a time
+	* The keyword typically used by generators, which yields only one iteration at a time. Used by generators
 
-# Code Example of yield
+# Code Example of yield and Generators
 
 ````python
 def get_primes(number):
@@ -41,19 +88,8 @@ get_primes(2)
 * This function is turned into a generator that will constantly return numbers in its endless loop, one at a time
 
 
-# Finite Example of Generators
 
-````python
-def get_primes(number):
-	for x in range(1,3):
-		yield number + 2
-
-
-print sum(get_primes(3))
-````
-* In a more explicit example, this function returns 10
-
-# Proposal
+# Weakness and Proposal
 
 * The drawback to this incarnation of yield is that when yield is used in a function, it can 
 only yield back to one caller
@@ -64,7 +100,7 @@ only yield back to one caller
 ````
 
 
-# Proposal (cont.)
+# Weakness and Proposal (cont.)
 
 * When used more formally, the syntax is: 
 ````python
@@ -166,31 +202,33 @@ Main purpose to move easily between functions and share data
 
 Delegating to subgenerators also helps to optimize in recursive calls
 
-# Compartmentalization
+# Ease of Use
 
-New syntax allows code to be split up, similar to threads
+* It's easy to redirect the result from a generator now:
 
-# Similarities to Class
+````python
+generate1 = yield from add_10
 
-Small-Step Semantics
+generate2 = yield from add_10
+
+generate3 = yield from add_10
+````
 
 # Counter-points
 
-The proposal, PEP 380, is accepted but disagreed with due to its unusual way of using yield to get outputs
-
-
-# Rejected Automation
-
-
- Use of automated next() calls not within scope of project
+* The proposal, PEP 380, is accepted but disagreed with due to its unusual way of using yield to get outputs
 
  
 # Rejected alternate return from sub-generator
 
  Goes against idea of suspendable functions being like other functions
 
+# Similarities to Class
+
+* Small-Step Semantics
 
 # Resources
 
 * http://www.cosc.canterbury.ac.nz/greg.ewing/python/yield-from/
 * https://www.python.org/dev/peps/pep-0380/
+* https://wiki.python.org/moin/Generators
