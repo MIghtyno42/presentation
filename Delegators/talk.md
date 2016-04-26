@@ -160,6 +160,11 @@ else:
 RESULT = _r
 ````
 
+# Rejected alternate return from sub-generator
+
+* There's been concerns that the implementation for "yield from" shouldn't use "return"
+* This was rejected because that would mean "yield from" would return values fundamentally differently
+
 
 #Further Description of Proposal
 
@@ -180,7 +185,7 @@ was used instead of:
 	yield from
 ````
 
-but it was ruled that it looked too similar to yield in:
+but it was ruled that it looked too similar to the yield normally used in functions, like in:
 
 ````python
 def count(number):
@@ -197,31 +202,36 @@ With the new syntax, we can now move around the code with yield in it to a great
 
 Main purpose to move easily between functions and share data
 
-
-#Optimization
-
-Delegating to subgenerators also helps to optimize in recursive calls
-
 # Ease of Use
 
 * It's easy to redirect the result from a generator now:
 
 ````python
-generate1 = yield from add_10
+generate1 = yield from add_10(5)
 
-generate2 = yield from add_10
+generate2 = yield from add_10(5)
 
-generate3 = yield from add_10
+generate3 = yield from add_10(5)
 ````
+
+#Optimization
+
+* Delegating to subgenerators also helps to optimize in recursive calls
+
+
 
 # Counter-points
 
 * The proposal, PEP 380, is accepted but disagreed with due to its unusual way of using yield to get outputs
 
- 
-# Rejected alternate return from sub-generator
+* An argument that arises is that "yield from" and the "yield" used in functions get values differently and should not use the same keyword
 
- Goes against idea of suspendable functions being like other functions
+* Some rejected keywords that were suggested to replace "yield from" were:
+
+````python
+			call	delegate	gcall
+````
+
 
 # Similarities to Class
 
