@@ -12,30 +12,30 @@ CSCI 3155 Presentation - Python
 
 * Our proposal was PEP 380 --Syntax for Delegating to a Subgenerator
 
+* Generators are made to act like iterators.
+
+* In Python, iterators are objects that use the __ __next__ __ method and return a single value per iteration, one little piece at a time
 
 * PEP 380 simply suggests making generators in Python more usable by giving another use to the following keyword: 
-
-
 ````python 
 					yield
 ```` 
-# What is a Generator?
 
-* In Python, generators are made to act like iterators, which formally look like this in Python:
+
+
+# What is a Iterator?
+
 
 ````python 
 class firstn(object):
     def __init__(self, n):
         self.n = n
         self.num, self.nums = 0, []
-
     def __iter__(self):
         return self
-
     # Python 3 compatibility
-    def __next__(self):
+    def __next__ (self):
         return self.next()
-
     def next(self):
         if self.num < self.n:
             cur, self.num = self.num, self.num+1
@@ -44,13 +44,9 @@ class firstn(object):
             raise StopIteration()
 ````
 
-* And return one value per iteration.
+# What is a Generator?
 
-* keyword is def__next__(self)
-
-# What is a Generator? (cont.)
-
-* Generators, on the other hand, are simpler and more readable:
+* Generators, on the other hand, do the same thing but are simpler and more readable:
 
 ````python 
 def firstn(n):
@@ -111,12 +107,9 @@ RESULT = yield from EXPR
 	
 * The yield runs until EXPR is depleted of iterations, as usual
 * The main change with PEP 380 is that it allows for yield to be used out of the function
-````python
-RESULT = yield from EXPR 
-````
+
 
 # Comparisons
-
 
 ````python
 _i = iter(EXPR) 
