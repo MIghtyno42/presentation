@@ -238,6 +238,14 @@ generate3 = yield from add_10(5)
 
 * Small-Step Semantics
 
+* Inference Rule:
+
+YieldFrom
+
+g: __Generator__
+---
+yield from g() : yield from g'()
+
 # Resources
 
 * http://www.cosc.canterbury.ac.nz/greg.ewing/python/yield-from/
